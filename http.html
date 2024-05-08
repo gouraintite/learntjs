@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+
+      const ab = new AbortController();
+      const fetcher = async () => {
+        const res = await fetch(
+          "https://jsonplaceholder.typicode.com/users",
+          {
+            signal: ab.signal,
+          }
+        );
+
+        const r = await res;
+        if (!r.ok) {
+          console.log("badoh");
+          const err = new Error("inacceptable");
+          return err;
+        }
+        return r.json();
+        console.log(r, "final");
+      };
+
+      const fetcherPsoter = async () => {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: "POST",
+          signal: ab.signal,
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: "Comming soon" }),
+        });
+
+        const r = await res;
+        if (!r.ok) {
+          console.log("bado");
+          const err = new Error("inacceptable");
+          return err;
+        }
+        return r.json();
+        console.log(r, "final");
+      };
+
+      // Promise.race([fetcherPsoter(), fetcher()])
+      //   .then((r) => {
+      //     console.log(r);
+      //     ab.abort();
+      //   })
+      //   .catch((e) => console.log(e));
+
+      // fetcherPsoter()
+      //   .then((r) => console.log(r))
+      //   .catch((e) => console.log(e));
+      // fetcher()
+      //   .then((r) => console.log(r))
+      //   .catch((e) => console.log(e));
+
+      const addDays = (date, days) =>{
+         date = new Date(date).getDay();
+         date +=days;
+
+       return date
+      }
+
+      const today = new Date();
+      const tomorrow = addDays(today, 1);
+      console.log(today, tomorrow, today.getDay(), 'days here');
+    </script>
+    <script src="./index.js" type="module"></script>
+    <style>
+      .red{
+        color: teal;
+      }
+      /* #lastPosts{
+        display: flex;
+        background-color: rgba(0, 255, 255, 0.348);
+      } */
+
+      .spoiler{
+        background-color: black;
+        padding: 1px;
+      }
+
+      .spoiler::selection{
+        color: transparent;
+      }
+      span{
+        transition: .4s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>
+     NGOUTSOP Rainsong
+    </h1>
+
+    <ul>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, debitis a quam delectus</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, debitis a quam delectus</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, debitis a quam delectus</li>
+    </ul> -->
+
+    <div>
+      Lorem ipsum dolor sit amet <span class="spoiler">consectetur adipisicing elit. Enim error, quae saepe voluptas numquam,</span> voluptatem earum quisquam <span class="spoiler">ex excepturi velit quos commodi dolorum tempore</span> perferendis! Omnis magni eum at similique.
+    </div>
+    <div id="lastPosts">
+      chargement...
+    </div>
+  </body>
+</html>

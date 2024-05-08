@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*function isPalindrome(word) {
+      return word === word.split('').reverse().join('');
+    }
+    const converetedWord = 'sol'.split('').reverse().join('')
+    console.log(isPalindrome('ojjoh'));*/
+
+      /*const students = [
+      {
+        name: 'Rita',
+        notes: [1, 20, 15, 12]
+      },
+      {
+        name: 'Ngi',
+        notes: [9, 10, 16, 11]
+      },
+      {
+        name: 'Pali',
+        notes: [19, 20, 12, 12]
+      }
+    ]
+
+    function moyenne(tab) {
+      let sum = 0;
+      for (let note of tab) {
+        sum += note;
+      }
+      for (const el in object) {
+        if (Object.hasOwnProperty.call(object, el)) {
+          const element = object[el];
+        }
+      }
+      return sum/tab.length
+    }
+    function updateElement() {
+      for (let student of students) {
+        console.log(student);
+        student.moyenne = moyenne(student.notes)
+      }
+      console.log(students);
+      let ordered = students.sort((a, b)=> b.moyenne - a.moyenne)
+      console.log('par ordre on a ',  ordered[0].name);
+    }
+    updateElement()*/
+
+      /*const citation = 't u: i i . u oo OO, Oo'
+
+    let toReplace = ['p', ',', ':', 'i', ' ']
+
+    const purge = (toRemove, sentence) =>{
+      for (const el of toRemove) {
+        console.log(el);
+        sentence = sentence.replaceAll(el, '')
+        console.log(sentence);
+      }
+      console.log(sentence, 'cleaned');
+    }
+    purge(toReplace, citation)
+
+    function compter(sentence) {
+      console.log(sentence);
+      let occurences = {};
+      let formated = sentence.toLowerCase().split(' ')
+      console.log(formated);
+      for (const element of formated) {
+        console.log(occurences[element]);
+        if (occurences[element]) {
+          occurences[element]++
+        } else {
+         occurences[element] = 1 
+        }
+      }
+      console.log(occurences);
+
+    }
+
+    compter(citation)*/
+
+      class Rectangle {
+        hauteur = 0;
+        largeur = 0;
+        constructor(hauteur, largeur) {
+          if (largeur <= 0 || hauteur <= 0 || largeur < hauteur) {
+            throw new MyError('"Votre rec est incomforme."');
+          }
+          this.hauteur = hauteur;
+          this.largeur = largeur;
+        }
+
+        get perimeter() {
+          return (this.hauteur + this.largeur) * 2;
+        }
+
+        get isValid() {
+          return this.hauteur > this.largeur > 0;
+        }
+
+        get data() {
+          return [this.hauteur, this.largeur];
+        }
+
+        isBiggerThan(compare) {
+          console.log(this.perimeter, compare.perimeter);
+          return super.perimeter > compare.perimeter;
+        }
+      }
+
+      class Square extends Rectangle {
+        constructor(side) {
+          super(side, side);
+        }
+      }
+
+      class MyError extends Error {}
+
+      const rec = new Rectangle(10, 20);
+      console.log(rec.perimeter);
+      console.log(rec.isValid);
+      console.log(rec.data);
+      const recIn = new Rectangle(4, 6);
+      console.log(recIn.isValid);
+      const sq = new Square(10);
+      console.log(sq.data);
+      console.log(sq.perimeter);
+      console.log(
+        `Is the square bigger than rectangle ? : ${sq.isBiggerThan(rec)}`
+      );
+
+      // const largeur = parseInt(prompt("entrer la largeur"), 10);
+      // const longueur = parseInt(prompt("entrer la longueur"), 10);
+
+      // try {
+      //   const rec2 = new Rectangle(largeur, longueur);
+      //   console.log(rec2, rec2.perimeter, "rec2");
+      // } catch (error) {
+      //   if (error instanceof MyError) {
+      //     console.log("cool error", { error }, error);
+      //   } else console.log("rec2 error");
+      // }
+
+      // class Book {
+      //   name = '';
+      //   pageNbr = null;
+      //   #actualPage = null;
+      //   #opened = false;
+
+      //   constructor(name, pageNbr){
+      //     this.name = name;
+      //     this.pageNbr = pageNbr;
+      //   }
+
+      //   get page(){
+      //     if (!this.#opened) {
+      //       return 'book closed'
+      //     }
+      //     return this.#actualPage
+      //   }
+
+      //   get status (){
+      //     if (this.#opened) {
+      //       return true
+      //     }
+      //     return false
+      //   }
+
+      //   nextPage(){
+      //       this.#opened = true
+      //      return this.#actualPage++
+
+      //   }
+      //   prevPage(){
+      //     return this.#actualPage--
+      //   }
+
+      //   close(){
+      //     if (this.#opened) {
+      //       this.#opened = !this.#opened
+      //     }
+      //   }
+      // }
+
+      // type bookArray = Array<Book>
+      // class Library {
+      //   // books:bookArray = []
+      //    books = []
+
+      //    addBook(book){
+      //     this.books.push(book)
+      //     console.log('ednojon'.includes('e'));
+
+      //   }
+
+      //    addBooks(books){
+      //     books.forEach(this.addBook, this)
+      //     // for (const book of books) {
+      //     //   this.addBook(book)
+      //     // }
+      //   }
+
+      //   findBooksByLetter(searchBy){
+
+      //     return this.books.filter((book)=> book.name.toLowerCase().includes(searchBy.toLowerCase())) //to look again
+      //       // searchBy = String(searchBy).toLowerCase()
+      //       // let matched = []
+      //       // for (const book of this.books) {
+      //       //   if (book.name.toLowerCase().includes(searchBy)) {
+      //       //     matched.push(book.name)
+      //       //   }
+      //       // }
+
+      //       // return matched
+      //     }
+      // }
+
+      // const b = new Book('Le book des anneaux', 200)
+      // console.log(b.page, b.status, b);
+      // b.nextPage();
+      // console.log(b.page, b.status);
+      // b.prevPage();
+      // console.log(b.page, b.status);
+      // b.close
+      // console.log(b.page, b.status);
+
+      // const lib = new Library();
+      // lib.addBook(b)
+      // lib.addBooks([
+      //   new Book('Eooo the game', 100),
+      //   // new Book('New the guy', 14),
+      //   new Book('bbb iIs ded', 20),
+
+      // ])
+      // console.log(lib);
+      // console.log(lib.findBooksByLetter('b'));
+
+      // class Room {
+
+      //   students = []
+
+      //   constructor(teacher, nbrStudents){
+      //     this.teacher = teacher;
+      //     this.nbrStudents = nbrStudents
+      //   }
+
+      //   // get teacher(){
+      //   //   return this.teacher
+      //   // }
+
+      //   // get nbrStudents(){
+      //   //   return this.nbrStudents
+      //   // }
+
+      //   addStudent(student){
+      //     this.students.push(student)
+      //     this.nbrStudents--
+      //   }
+
+      //   addStudents(students){
+      //     students.forEach(this.addStudent, this)
+      //     this.nbrStudents = this.nbrStudents - students.length
+      //   }
+
+      //   get room(){
+      //     return [this.teacher, this.nbrStudents]
+      //   }
+
+      //   get studentLs(){
+      //     return this.students
+      //   }
+      // }
+
+      //   class School {
+
+      //     room = []
+
+      //     constructor(principalName){
+      //       this.principalName = principalName;
+      //     }
+
+      //     // get room(){
+      //     //   return room
+      //     // }
+
+      //     // get principalName(){
+      //     //   return principalName
+      //     // }
+
+      //     addRoom(room){
+      //         this.room.push(room)
+      //     }
+
+      //     addRooms(newRooms){
+      //       newRooms.forEach(this.addRoom, this)
+      //     }
+
+      //   }
+
+      // class Student {
+
+      //   constructor(name, age, gender){
+      //     this.name = name,
+      //     this.age = age,
+      //     this.gender = gender
+      //   }
+
+      //   get student(){
+      //     return [this.age, this.age, this.gender]
+      //   }
+      // }
+
+      // const room0 =  new Room('dede', 34)
+      // const school1 = new School('Ngoutsop Rainsong')
+
+      // console.log(school1, 'empty school');
+      // const room1 = new Room('EGos', 21);
+
+      // console.log(room1);
+
+      // school1.addRooms([new Room('Dan', 972), room1])
+      // console.log(school1, 'Dan school');
+      // school1.addRooms([
+      //   new Room('Aunty', 60),
+      //   new Room('Tuy', 13)])
+
+      // console.log(school1.room, school1.principalName, 'Full school');
+
+      // const first = new Student('Boy boy', 12, 'Male');
+      // const second = new Student('Girl cool', 11, 'Fem');
+
+      // console.log(first, second, 'all students');
+      // room1.addStudent(first);
+      // room1.addStudent(second)
+
+      // console.log(room1,  'full room');
+      // console.log(school1, 'finallll');
+
+      // const numb = prompt("enter");
+      // const power = prompt("puissance");
+
+      const pow = (numb, power = 2) => {
+        numb = parseInt(numb);
+        power = parseInt(power);
+        n = 1;
+        while (n < power) {
+          numb *= numb;
+          n++;
+          console.log(n, numb);
+        }
+        alert(numb);
+        return numb;
+      };
+
+      // pow(numb, power)
+
+      const five = (el, times) => {
+        // el = parseInt(el)
+        counter = times;
+        const inter = setInterval(() => {
+          // console.log(el);
+          console.log(counter);
+
+          if (counter === 0) {
+            clearInterval(inter);
+          }
+          counter--
+
+        }, 1000);
+      };
+
+      const compte = (el) =>{
+        const tim = setTimeout(()=>{
+          console.log(el);
+          el--
+        },1000, [3, 2])
+      }
+
+      const decompte = (num) =>{
+          five(num, num)
+      }
+
+      compte(5)
+      // decompte(3)
+
+      // five("name");
+    </script>
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
